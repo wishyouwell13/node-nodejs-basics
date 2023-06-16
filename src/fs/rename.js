@@ -12,7 +12,10 @@ const rename = async () => {
     const filename = basename(path, '.txt');
     const target = join(parse(path).dir, filename + '.md');
 
-    if (!exists(path) || exists(target)) throw new Error('FS operation failed');
+    const isDestExists = await exists(path);
+    const isSrcExists = await exists(target);
+
+    if (isSrcExists || !isDestExists) throw new Error('FS operation failed');
 
     await fsRename(path, target);
   } catch (e) {

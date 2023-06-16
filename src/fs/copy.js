@@ -1,6 +1,6 @@
-import { cp, access } from 'fs/promises';
+import { cp } from 'fs/promises';
 import { fileURLToPath } from 'url';
-import { dirname, join, parse } from 'path';
+import { dirname, join } from 'path';
 
 import { exists } from './utils/helpers';
 
@@ -9,7 +9,6 @@ const path = join(__dirname, 'files');
 const copyPath = join(__dirname, 'files_copy');
 
 const copy = async (src = path, dest = copyPath) => {
-  console.log(parse(__dirname));
   try {
     const isDestExists = await exists(dest);
     const isSrcExists = await exists(src);
